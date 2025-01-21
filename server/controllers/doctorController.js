@@ -19,7 +19,8 @@ function show(req, res, next) {
     if (results.length === 0) {
       return next()
     }
-    res.json(results[0])
+    const doctor = results[0]
+    res.json(doctor)
   })
 
 }
