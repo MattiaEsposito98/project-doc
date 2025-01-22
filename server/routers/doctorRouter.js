@@ -9,6 +9,6 @@ router.get('/', doctorController.index)
 router.get('/:id', doctorController.show)
 
 //post
-router.post('/', doctorController.storeReview)
+router.post('/:id', doctorController.storeReview)
 
 module.exports = router

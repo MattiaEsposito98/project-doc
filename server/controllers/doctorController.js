@@ -1,9 +1,17 @@
 const connection = require('../data/db')
 
-
 //index
 function index(req, res, next) {
-  const sql = `SELECT * FROM db_docs.medici`
+  const sql = `SELECT 
+    medici.*, AVG(paziente_medico.valutazione) AS valutazione
+FROM 
+    db_docs.medici
+JOIN 
+    db_docs.paziente_medico
+ON 
+    medici.id_medico = paziente_medico.id_medico
+GROUP BY medici.id_medico
+`
 
   connection.query(sql, (err, results) => {
     if (err) return next(err)
@@ -23,22 +31,42 @@ function show(req, res, next) {
       return next()
     }
     const doctor = results[0]
-    res.json(doctor)
-  })
 
+    const sql = `SELECT * FROM paziente_medico WHERE id_medico = ?`
+
+    connection.query(sql, [id], (err, results) => {
+      if (err) return res.status(500).json({ message: err.message })
+
+      doctor.paziente_medico = results
+      res.json(doctor)
+    })
+
+  })
 }
 
-//store
 function storeReview(req, res, next) {
-  const { ID_paziente, ID_medico, valutazione, descrizione } = req.body
-  const sql = `INSERT INTO db_docs.paziente_medico(ID_paziente,ID_medico, Valutazione, Descrizione) VALUES (?,?, ?, ?);`
+  const { name, Valutazione, Descrizione, } = req.body;
+  const { id } = req.params; // Ottieni ID_medico dall'URL
 
-  connection.query(sql, [ID_paziente, ID_medico, valutazione, descrizione], (err, results) => {
-    if (err) return next(err)
-    res.status(201).json({ message: 'Recensione aggiunta', id: results.insertId })
-  })
+  //Validazione dei dati in ingresso
+  if (!name || typeof (name) !== 'string' || isNaN(Valutazione) || !Valutazione || Valutazione < 0 || Valutazione > 6 || !Descrizione) {
+    return res.status(400).json({ message: 'Dati incompleti. Assicurati di includere name, valutazione, descrizione' });
+  }
 
+  // SQL per inserire la recensione
+  const sql = `INSERT INTO db_docs.paziente_medico(ID_medico, name, Valutazione, Descrizione) VALUES (?,?,?,?);`;
 
+  // Esecuzione della query
+  connection.query(sql, [id, name, Valutazione, Descrizione], (err, results) => {
+    if (err) {
+      console.error(err); // Log dell'errore per il debugging
+      return next(err); // Passa l'errore al middleware di gestione degli errori
+    }
+
+    res.status(201).json({ message: 'Recensione aggiunta', id: results.insertId });
+  });
 }
+
+
 
 module.exports = { index, show, storeReview }
