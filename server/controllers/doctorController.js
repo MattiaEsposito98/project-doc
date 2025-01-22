@@ -1,5 +1,7 @@
 const connection = require('../data/db')
 
+
+//index
 function index(req, res, next) {
   const sql = `SELECT * FROM db_docs.medici`
 
@@ -10,6 +12,7 @@ function index(req, res, next) {
 
 }
 
+//show
 function show(req, res, next) {
   const { id } = req.params
   const sql = `SELECT * FROM db_docs.medici WHERE id_medico = ?`
@@ -25,4 +28,17 @@ function show(req, res, next) {
 
 }
 
-module.exports = { index, show }
+//store
+function storeReview(req, res, next) {
+  const { ID_paziente, ID_medico, valutazione, descrizione } = req.body
+  const sql = `INSERT INTO db_docs.paziente_medico(ID_paziente,ID_medico, Valutazione, Descrizione) VALUES (?,?, ?, ?);`
+
+  connection.query(sql, [ID_paziente, ID_medico, valutazione, descrizione], (err, results) => {
+    if (err) return next(err)
+    res.status(201).json({ message: 'Recensione aggiunta', id: results.insertId })
+  })
+
+
+}
+
+module.exports = { index, show, storeReview }
