@@ -1,0 +1,49 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+a {
+  color: currentColor;
+  text-decoration: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  background-color: #efefef;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+
+/*  */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-header {
+  object-fit: contain;
+  width: 100px;
+  height: 100px;
+}

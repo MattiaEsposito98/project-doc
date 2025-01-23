@@ -35,7 +35,7 @@ function show(req, res, next) {
     const sql = `SELECT * FROM paziente_medico WHERE id_medico = ?`
 
     connection.query(sql, [id], (err, results) => {
-      if (err) return res.status(500).json({ message: err.message })
+      if (err) return next(err)
 
       doctor.paziente_medico = results
       res.json(doctor)
