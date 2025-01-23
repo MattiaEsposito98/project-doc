@@ -35,7 +35,7 @@ body {
 }
 
 
-/*  */
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -46,4 +46,15 @@ body {
   object-fit: contain;
   width: 100px;
   height: 100px;
+}
+
+/* Main */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
+
+main {
+  flex-grow: 1
 }
