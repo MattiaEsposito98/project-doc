@@ -34,20 +34,6 @@ body {
   padding: 1.5rem;
 }
 
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.img-header {
-  object-fit: contain;
-  width: 100px;
-  height: 100px;
-}
-
 /* Main */
 #root {
   display: flex;
@@ -57,4 +43,18 @@ body {
 
 main {
   flex-grow: 1
+}
+
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.img-header {
+  object-fit: contain;
+  width: 100px;
+  height: 100px;
 }

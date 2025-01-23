@@ -9,8 +9,8 @@ function Footer() {
           &copy; {new Date().getFullYear()} La Mia Azienda. Tutti i diritti riservati.
         </p>
         <p style={styles.text}>
-          <a href="/privacy-policy" style={styles.link}>Privacy Policy</a> |
-          <a href="/terms-of-service" style={styles.link}>Terms of Service</a>
+          <a style={styles.link}>Privacy Policy</a> |
+          <a style={styles.link}>Terms of Service</a>
         </p>
         <div style={styles.socialLinks}>
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" style={styles.socialLink}>
