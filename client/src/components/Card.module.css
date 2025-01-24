@@ -1,0 +1,40 @@
+img {
+  width: 100px;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  color: green;
+
+}
+
+.card {
+  display: flex;
+  gap: 2px;
+  border: 1px solid black;
+  min-width: 310px;
+  gap: 10px;
+
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  align-items: center;
+
+}
+
+.numberPhone:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button {
+  border-radius: 12px;
+  border: 1px solid black;
+  width: 100px;
+  color: white;
+  background-color: green;
+}

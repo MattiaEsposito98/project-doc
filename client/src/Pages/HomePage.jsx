@@ -1,24 +1,31 @@
 import { useContext } from 'react';
 import { GlobalContext } from "../context/Globalcontext"
+import Card from '../components/Card'
 
 const DoctorList = () => {
   const { doctors } = useContext(GlobalContext);
 
   return (
     <div>
-      <h2>Elenco Medici</h2>
+      <h2 className='title'>Elenco Medici</h2>
       {doctors.length > 0 ? (
-        <ul>
-          {doctors.map((doctor) => (
-            <li key={doctor.ID_medico}>
-              <h3>{doctor.Nome} {doctor.Cognome}</h3>
-            </li>
-          ))}
-        </ul>
+
+        <div className="container">
+          <div className="row">
+
+            {doctors.map((doctor) => (
+              <div className="card-position" key={doctor.ID_medico}>
+                <Card doctor={doctor} />
+              </div>
+            ))}
+
+          </div>
+        </div>
       ) : (
         <p>Nessun medico trovato.</p>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

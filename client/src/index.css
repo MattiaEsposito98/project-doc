@@ -29,7 +29,7 @@ body {
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem;
 }
@@ -45,6 +45,9 @@ main {
   flex-grow: 1
 }
 
+body {
+  background-color: rgb(181, 224, 173);
+}
 
 /* Header */
 .header {
@@ -57,4 +60,20 @@ main {
   object-fit: contain;
   width: 100px;
   height: 100px;
+}
+
+
+/* HomePage */
+.title {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-position {
+  margin: auto;
+  margin-top: 1rem;
 }
