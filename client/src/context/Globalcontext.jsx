@@ -30,7 +30,7 @@ export default function GlobalProvider({ children }) {
   }
 
   useEffect(() => {
-    fetchDoctors
+    fetchDoctors()
   }, [])
 
   return (
