@@ -12,7 +12,6 @@ const DoctorList = () => {
           {doctors.map((doctor) => (
             <li key={doctor.ID_medico}>
               <h3>{doctor.Nome} {doctor.Cognome}</h3>
-
             </li>
           ))}
         </ul>
