@@ -33,7 +33,7 @@ function Footer() {
 
 const styles = {
   footer: {
-    backgroundColor: '#222',
+    backgroundColor: '#2a5045',
     color: '#fff',
     padding: '20px 0',
     textAlign: 'center',

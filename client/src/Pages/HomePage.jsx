@@ -12,7 +12,6 @@ const DoctorList = () => {
 
         <div className="container">
           <div className="row">
-
             {doctors.map((doctor) => (
               <div className="card-position" key={doctor.ID_medico}>
                 <Card doctor={doctor} />

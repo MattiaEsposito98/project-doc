@@ -1,4 +1,13 @@
 .nav {
   display: flex;
   gap: 30px;
+  margin-right: 2rem;
+}
+
+.buttonNavbar {
+  border: 1px solid green;
+  background-color: #249a78;
+  color: aliceblue;
+  padding: 12px;
+  text-transform: uppercase;
 }

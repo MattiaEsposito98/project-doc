@@ -6,16 +6,18 @@ export default function Navbar() {
     <>
       <nav >
         <ul className={style.nav}>
-          <li>
+          <li className={style.buttonNavbar}>
             <NavLink to="/">Home
             </NavLink>
           </li>
 
-          <li>
-            contact
+          <li className={style.buttonNavbar}>
+            <Link to="/contact">
+              Contact
+            </Link>
           </li>
 
-          <li>
+          <li className={style.buttonNavbar}>
             <Link to="/about">About
             </Link>
           </li>

@@ -36,5 +36,7 @@ img {
   border: 1px solid black;
   width: 100px;
   color: white;
-  background-color: green;
+  background-color: #00645c;
+  cursor: pointer;
+  padding: 5px;
 }
