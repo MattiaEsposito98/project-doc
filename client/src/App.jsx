@@ -4,6 +4,7 @@ import GlobalProvider from "./context/Globalcontext"
 import HomePage from "./Pages/HomePage"
 import About from "./Pages/About"
 import Contact from "./Pages/Contact"
+import Details from "./Pages/Details"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
+              <Route path="Details/:id" element={<Details />} />
             </Route>
           </Routes>
         </BrowserRouter>
