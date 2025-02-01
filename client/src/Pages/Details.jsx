@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import style from "./Details.module.css"
+import Stars from "../components/Stars"
 
 export default function Details() {
   const { id } = useParams()
@@ -44,7 +45,7 @@ export default function Details() {
           {doctor.paziente_medico.map((recensione, i) => (
             <li className={style.liCard} key={i}>
               <h2>{recensione.name}</h2>
-              <strong>Valutazione:</strong> {recensione.Valutazione} ⭐<br />
+              <strong>Valutazione:</strong> {<Stars valutazione={recensione.Valutazione} />} <br />
               <strong>Commento:</strong> {recensione.Descrizione}
             </li>
           ))}
