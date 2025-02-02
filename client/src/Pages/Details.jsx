@@ -21,18 +21,19 @@ export default function Details() {
   useEffect(() => {
     fetchDoctor()
   }, [id])
-  console.log(doctor)
+
   if (!doctor) return <p>Nessun dettaglio trovato per questo medico.</p>;
 
   return (
     <>
       <div className="container">
         <h1>Dott.{doctor.Nome} {doctor.Cognome}</h1>
-        <ul>
-          <li>{doctor.Email}</li>
-          <li>{doctor.Specializzazione}</li>
-          <li>{doctor.Telefono}</li>
-          <li>{doctor.Valutazione}</li>
+        <ul className={style.ulDetails}>
+          <li><strong>Email:</strong> {doctor.Email}</li>
+          <li><strong>Specializzazione:</strong> {doctor.Specializzazione}</li>
+          <li><strong>Indirizzo:</strong> {doctor.Indirizzo}</li>
+          <li><strong>Numero di telefono:</strong> {doctor.Telefono}</li>
+          <li><strong>Valutazione:</strong> {<Stars valutazione={doctor.Valutazione} />} </li>
         </ul>
       </div>
 

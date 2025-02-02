@@ -40,7 +40,8 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh
+  min-height: 100vh;
+
 }
 
 main {
@@ -101,12 +102,51 @@ body {
   margin-top: 1rem;
 }
 
+.containerCard {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.containerCard2 {
+  height: 270px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 210px;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  /* Aggiunto per una migliore distribuzione */
 }
 
 .card-position {
-  margin: auto;
-  margin-top: 1rem;
+  margin: 1rem 0;
+  width: calc(50% - 1rem);
+  /* 50% della larghezza meno un margine */
+}
+
+/* Paginazione */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 20px;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li.active button {
+  background-color: green;
+  color: white;
+}
+
+.pagination button {
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
 }

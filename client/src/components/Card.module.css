@@ -11,8 +11,8 @@ img {
   display: flex;
   gap: 2px;
   border: 1px solid black;
-  min-width: 310px;
-  gap: 10px;
+  width: 350px;
+  margin: 10px;
 
 }
 
