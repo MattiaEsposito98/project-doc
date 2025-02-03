@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import style from "./Details.module.css"
 import Stars from "../components/Stars"
+import FormReview from "../components/FormReview"
 
 export default function Details() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [doctor, setDoctor] = useState(null)
 
   function fetchDoctor() {
@@ -26,6 +28,7 @@ export default function Details() {
 
   return (
     <>
+      <button className="buttonNavigate " onClick={() => navigate(-1)}>Torna indietro</button>
       <div className="container">
         <h1>Dott.{doctor.Nome} {doctor.Cognome}</h1>
         <ul className={style.ulDetails}>
@@ -39,7 +42,7 @@ export default function Details() {
 
       {/* Recensioni */}
       <div className="container"></div>
-      <h1>Recensioni</h1>
+      <h1 className={style.titleRecensioni}>  Recensioni</h1>
 
       {doctor.paziente_medico && doctor.paziente_medico.length > 0 ? (
         <ul>
@@ -47,12 +50,14 @@ export default function Details() {
             <li className={style.liCard} key={i}>
               <h2>{recensione.name}</h2>
               <strong>Valutazione:</strong> {<Stars valutazione={recensione.Valutazione} />} <br />
-              <strong>Commento:</strong> {recensione.Descrizione}
+              <p><strong>Commento:</strong> {recensione.Descrizione}</p>
             </li>
           ))}
         </ul>
       ) : (<p>Nessuna recensione disponibile</p>
       )}
+
+      <FormReview />
 
     </>
   )

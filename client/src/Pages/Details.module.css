@@ -2,18 +2,23 @@
   margin-top: 1rem;
   border: 1px solid black;
   width: 500px;
+  overflow-wrap: break-word;
   margin-left: 1rem;
   margin-bottom: 20px;
   padding: 10px;
+
 }
 
 .liCard>* {
   margin-left: 1rem;
-
 }
 
-h1 {
+h1:first-child {
   text-align: center;
+}
+
+.titleRecensioni {
+  margin-left: 1rem;
 }
 
 .ulDetails {
