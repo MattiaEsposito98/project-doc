@@ -7,7 +7,6 @@ export default function GlobalProvider({ children }) {
   const [doctors, setDoctors] = useState([])
   const [search, setSearch] = useState('')
 
-
   function fetchDoctors() {
     axios.get(`${import.meta.env.VITE_API_URL}`, {
       params: {
@@ -33,8 +32,9 @@ export default function GlobalProvider({ children }) {
     fetchDoctors()
   }, [])
 
+
   return (
-    <GlobalContext.Provider value={{ doctors, setDoctors, search, setSearch, searchDoctor }}>
+    <GlobalContext.Provider value={{ doctors, setDoctors, search, setSearch, searchDoctor, fetchDoctors }}>
       {children}
     </GlobalContext.Provider>
   )

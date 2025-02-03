@@ -1,34 +1,34 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import style from "./Details.module.css"
-import Stars from "../components/Stars"
-import FormReview from "../components/FormReview"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import style from "./Details.module.css";
+import Stars from "../components/Stars";
+import FormReview from "../components/FormReview";
 
 export default function Details() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const [doctor, setDoctor] = useState(null)
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [doctor, setDoctor] = useState(null);
 
   function fetchDoctor() {
     axios.get(`${import.meta.env.VITE_API_URL}/${id}`)
       .then(response => {
-        setDoctor(response.data)
+        setDoctor(response.data);
       })
       .catch((err) => {
         console.error("Errore nel recupero dati", err);
-      })
+      });
   }
 
   useEffect(() => {
-    fetchDoctor()
-  }, [id])
+    fetchDoctor();
+  }, []);
 
   if (!doctor) return <p>Nessun dettaglio trovato per questo medico.</p>;
 
   return (
     <>
-      <button className="buttonNavigate " onClick={() => navigate(-1)}>Torna indietro</button>
+      <button className="buttonNavigate" onClick={() => navigate(-1)}>Torna indietro</button>
       <div className="container">
         <h1>Dott.{doctor.Nome} {doctor.Cognome}</h1>
         <ul className={style.ulDetails}>
@@ -42,7 +42,7 @@ export default function Details() {
 
       {/* Recensioni */}
       <div className="container"></div>
-      <h1 className={style.titleRecensioni}>  Recensioni</h1>
+      <h1 className={style.titleRecensioni}>Recensioni</h1>
 
       {doctor.paziente_medico && doctor.paziente_medico.length > 0 ? (
         <ul>
@@ -54,11 +54,11 @@ export default function Details() {
             </li>
           ))}
         </ul>
-      ) : (<p>Nessuna recensione disponibile</p>
+      ) : (
+        <p>Nessuna recensione disponibile</p>
       )}
 
-      <FormReview />
-
+      <FormReview onReviewSubmitted={fetchDoctor} />
     </>
-  )
+  );
 }
