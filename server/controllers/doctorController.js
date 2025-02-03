@@ -25,7 +25,10 @@ function show(req, res, next) {
   const { id } = req.params
   const sql = `SELECT medici.*, paziente_medico.descrizione, paziente_medico.Valutazione
               FROM db_docs.medici
-              JOIN paziente_medico ON medici.ID_medico = paziente_medico.ID_medico`
+              JOIN paziente_medico ON medici.ID_medico = paziente_medico.ID_medico
+              WHERE medici.ID_medico = ?
+              `
+
 
   connection.query(sql, [id], (err, results) => {
     if (err) return next(err)
