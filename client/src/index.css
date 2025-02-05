@@ -157,4 +157,17 @@ body {
   background-color: #249a78;
   margin: 1rem;
   border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Details Recensioni */
+.buttonReviews {
+  padding: 8px;
+  background-color: #3ba190;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.col-50 {
+  width: 50%;
 }

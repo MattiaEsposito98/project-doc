@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import style from "./FormReview.module.css"
 
 const initialFormData = {
   name: '',
@@ -48,8 +49,8 @@ export default function FormReview({ onReviewSubmitted }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className={style.form} onSubmit={handleSubmit}>
+      <div className={style.labelInput}>
         <label htmlFor="name">Inserisci il nome</label>
         <input type="text"
           id="name"
@@ -60,7 +61,7 @@ export default function FormReview({ onReviewSubmitted }) {
         />
       </div>
 
-      <div>
+      <div className={style.labelInput}>
         <label htmlFor="Valutazione">Inserisci una Valutazione</label>
         <input type="number"
           id="Valutazione"
@@ -73,18 +74,19 @@ export default function FormReview({ onReviewSubmitted }) {
         />
       </div>
 
-      <div>
+      <div className={style.labelInput}>
         <label htmlFor="Descrizione">Inserisci una Descrizione</label>
-        <input type="text"
+        <textarea type="text"
           id="Descrizione"
           name="Descrizione"
           value={formData.Descrizione}
           onChange={handleFormData}
           required
+          maxlength="100"
         />
       </div>
 
-      <button type="submit">Invia Recensione</button>
+      <button className={style.buttonForm} type="submit">Invia Recensione</button>
     </form>
   );
 }

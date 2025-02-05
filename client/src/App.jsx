@@ -3,8 +3,8 @@ import DefaultLayout from "./layouts/DefaultLayout"
 import GlobalProvider from "./context/Globalcontext"
 import HomePage from "./Pages/HomePage"
 import About from "./Pages/About"
-import Contact from "./Pages/Contact"
 import Details from "./Pages/Details"
+import Register from "./Pages/Register"
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
             <Route path='/' element={<DefaultLayout />}>
               <Route index element={<HomePage />} />
               <Route path="about" element={<About />} />
-              <Route path="contact" element={<Contact />} />
+              <Route path="register" element={<Register />} />
               <Route path="Details/:id" element={<Details />} />
             </Route>
           </Routes>

@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid black;
+  width: 400px;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.buttonForm {
+  padding: 8px;
+  background-color: #3ba190;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.labelInput {
+  display: flex;
+  justify-content: space-between;
+}

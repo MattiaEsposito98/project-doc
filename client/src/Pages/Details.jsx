@@ -9,6 +9,7 @@ export default function Details() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [doctor, setDoctor] = useState(null);
+  const [showForm, setshowForm] = useState(false)
 
   function fetchDoctor() {
     axios.get(`${import.meta.env.VITE_API_URL}/${id}`)
@@ -41,24 +42,35 @@ export default function Details() {
       </div>
 
       {/* Recensioni */}
-      <div className="container"></div>
-      <h1 className={style.titleRecensioni}>Recensioni</h1>
+      <div className="container">
+        <h1 className={style.titleRecensioni}>Recensioni</h1>
+        <div className="row">
+          <div className="col-50">
+            {doctor.paziente_medico && doctor.paziente_medico.length > 0 ? (
+              <ul>
+                {doctor.paziente_medico.map((recensione, i) => (
+                  <li className={style.liCard} key={i}>
+                    <h2>{recensione.name}</h2>
+                    <strong>Valutazione:</strong> {<Stars valutazione={recensione.Valutazione} />} <br />
+                    <p><strong>Commento:</strong> {recensione.Descrizione}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Nessuna recensione disponibile</p>
+            )}
+          </div>
+          <div className="col-50">
+            <button className="buttonReviews" onClick={() => setshowForm(!showForm)}><span> {showForm ? '-' : '+'} </span> Aggiungi una recensione</button>
+            {showForm && <FormReview onReviewSubmitted={fetchDoctor} />}
 
-      {doctor.paziente_medico && doctor.paziente_medico.length > 0 ? (
-        <ul>
-          {doctor.paziente_medico.map((recensione, i) => (
-            <li className={style.liCard} key={i}>
-              <h2>{recensione.name}</h2>
-              <strong>Valutazione:</strong> {<Stars valutazione={recensione.Valutazione} />} <br />
-              <p><strong>Commento:</strong> {recensione.Descrizione}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Nessuna recensione disponibile</p>
-      )}
+          </div>
+        </div>
+      </div>
 
-      <FormReview onReviewSubmitted={fetchDoctor} />
+
+
+
     </>
   );
 }

@@ -1,0 +1,28 @@
+.formDoctors {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid black;
+  width: 500px;
+  margin: 20px auto;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  input {
+    height: 30px;
+  }
+}
+
+.buttonForm {
+  padding: 12px;
+  background-color: #3ba190;
+  cursor: pointer;
+  max-width: 200px;
+  margin: 0 auto;
+}
