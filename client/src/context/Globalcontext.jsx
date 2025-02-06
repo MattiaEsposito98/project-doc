@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import axios from 'axios'
 
 export const GlobalContext = createContext()
@@ -19,6 +19,8 @@ export default function GlobalProvider({ children }) {
       .catch((err) => {
         console.error(err);
       })
+
+
   }
 
   // Per cercare un dottore

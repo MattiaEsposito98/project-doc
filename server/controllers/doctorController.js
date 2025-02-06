@@ -3,14 +3,16 @@ const connection = require('../data/db')
 //index
 function index(req, res, next) {
   const sql = `SELECT 
-    medici.*, AVG(paziente_medico.valutazione) AS valutazione
-FROM 
-    db_docs.medici
-JOIN 
-    db_docs.paziente_medico
-ON 
-    medici.id_medico = paziente_medico.id_medico
-GROUP BY medici.id_medico
+    medici.*, 
+      COALESCE(AVG(paziente_medico.valutazione), 0) AS valutazione  
+    FROM 
+      db_docs.medici
+    LEFT JOIN 
+      db_docs.paziente_medico
+    ON 
+      medici.id_medico = paziente_medico.id_medico
+    GROUP BY 
+      medici.id_medico;
 `
 
   connection.query(sql, (err, results) => {
@@ -54,7 +56,7 @@ function storeReview(req, res, next) {
   const { id } = req.params; // Ottieni ID_medico dall'URL
 
   //Validazione dei dati in ingresso
-  if (!name || typeof (name) !== 'string' || isNaN(Valutazione) || !Valutazione || Valutazione < 0 || Valutazione > 6 || !Descrizione) {
+  if (!name || typeof (name) !== 'string' || isNaN(Valutazione) || !Valutazione || Valutazione < 0 || Valutazione > 5 || !Descrizione) {
     return res.status(400).json({ message: 'Dati incompleti. Assicurati di includere name, valutazione, descrizione' });
   }
 
@@ -72,6 +74,27 @@ function storeReview(req, res, next) {
   });
 }
 
+//funzion eper aggiungere dottore
+function storeDoctor(req, res, next) {
+  const { Email, Nome, Cognome, Telefono, Indirizzo, Specializzazione } = req.body;
+
+  if (!Email || !Nome || !Cognome || !Telefono || isNaN(Telefono) || !Indirizzo || !Specializzazione) {
+    return res.status(400).json({ error: 'Tutti i campi sono obbligatori' });
+  }
+
+  const sql = `INSERT INTO db_docs.medici (Email, Nome, Cognome, Telefono, Indirizzo, Specializzazione) 
+               VALUES (?, ?, ?, ?, ?, ?)`;
+
+  connection.query(sql, [Email, Nome, Cognome, Telefono, Indirizzo, Specializzazione], (err, results) => {
+    if (err) {
+      console.error('Errore nella query:', err);
+      return next(err);
+    }
+    res.status(201).json({ message: 'Dottore registrato', id: results.insertId });
+  });
+}
 
 
-module.exports = { index, show, storeReview }
+
+
+module.exports = { index, show, storeReview, storeDoctor }

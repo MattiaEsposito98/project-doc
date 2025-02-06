@@ -8,7 +8,11 @@ router.get('/', doctorController.index)
 //show
 router.get('/:id', doctorController.show)
 
-//post
+//postDoctor
+router.post('/register', doctorController.storeDoctor)
+
+//postReview
 router.post('/:id', doctorController.storeReview)
+
 
 module.exports = router

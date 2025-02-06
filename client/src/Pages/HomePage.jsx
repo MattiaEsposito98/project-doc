@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from 'react';
-import { GlobalContext } from "../context/Globalcontext"
+import { GlobalContext } from "../context/GlobalContext"
 import Card from '../components/Card'
 import Pagination from '../components/Pagination';
 
 const DoctorList = () => {
-  const { doctors } = useContext(GlobalContext);
+  const { doctors, fetchDoctors } = useContext(GlobalContext);
 
   const [currentPage, setCurrentPage] = useState(1)
   const doctorsForPage = 4
@@ -16,6 +16,10 @@ const DoctorList = () => {
 
   // Cambio pagina
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    fetchDoctors();
+  }, [doctors]);
 
   return (
     <div>

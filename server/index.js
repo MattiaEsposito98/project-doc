@@ -17,7 +17,7 @@ app.use(express.static('pubblic'))
 
 
 app.get('/', (req, res) => {
-  res.send('Server is runninbg')
+  res.send('Server is running')
 })
 
 //Rotta
