@@ -3,7 +3,7 @@ const connection = require('../data/db')
 //index
 function index(req, res, next) {
   const sql = `SELECT 
-    medici.*, 
+      medici.*, 
       COALESCE(AVG(paziente_medico.valutazione), 0) AS valutazione  
     FROM 
       db_docs.medici
@@ -27,7 +27,7 @@ function show(req, res, next) {
   const { id } = req.params
   const sql = `SELECT medici.*, paziente_medico.descrizione, paziente_medico.Valutazione
               FROM db_docs.medici
-              JOIN paziente_medico ON medici.ID_medico = paziente_medico.ID_medico
+              LEFT JOIN paziente_medico ON medici.ID_medico = paziente_medico.ID_medico
               WHERE medici.ID_medico = ?
               `
 

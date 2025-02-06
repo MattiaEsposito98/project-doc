@@ -17,9 +17,6 @@ const DoctorList = () => {
   // Cambio pagina
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  useEffect(() => {
-    fetchDoctors();
-  }, [doctors]);
 
   return (
     <div>

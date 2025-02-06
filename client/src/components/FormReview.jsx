@@ -82,7 +82,7 @@ export default function FormReview({ onReviewSubmitted }) {
           value={formData.Descrizione}
           onChange={handleFormData}
           required
-          maxlength="100"
+          maxLength="100"
         />
       </div>
 
