@@ -37,7 +37,7 @@ export default function Details() {
           <li><strong>Specializzazione:</strong> {doctor.Specializzazione}</li>
           <li><strong>Indirizzo:</strong> {doctor.Indirizzo}</li>
           <li><strong>Numero di telefono:</strong> {doctor.Telefono}</li>
-          <li><strong>Valutazione:</strong> {<Stars valutazione={doctor.Valutazione} />} </li>
+          {doctor.valutazione && <li><strong>Valutazione:</strong> {<Stars valutazione={doctor.Valutazione} />} </li>}
         </ul>
       </div>
 

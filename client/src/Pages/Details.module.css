@@ -19,6 +19,8 @@ h1:first-child {
 
 .titleRecensioni {
   margin-left: 1rem;
+  margin-bottom: 2rem;
+  color: rgb(16, 96, 161);
 }
 
 .ulDetails {

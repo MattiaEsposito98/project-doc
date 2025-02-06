@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "./FormDoctor.module.css";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
@@ -15,6 +16,7 @@ const initialFormData = {
 export default function FormDoctors() {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchDoctors } = useContext(GlobalContext)
+  const navigate = useNavigate()
 
   function handleFormData(e) {
     const { name, value } = e.target;
@@ -36,6 +38,8 @@ export default function FormDoctors() {
         setTimeout(() => {
           fetchDoctors();
         }, 500);
+        navigate('/')
+
       })
       .catch((error) => {
         console.error("Errore durante l'invio dei dati", error);

@@ -4,7 +4,7 @@ import Card from '../components/Card'
 import Pagination from '../components/Pagination';
 
 const DoctorList = () => {
-  const { doctors, fetchDoctors } = useContext(GlobalContext);
+  const { doctors } = useContext(GlobalContext);
 
   const [currentPage, setCurrentPage] = useState(1)
   const doctorsForPage = 4
@@ -23,7 +23,7 @@ const DoctorList = () => {
       <h2 className='title'>Elenco Medici</h2>
       {doctors.length > 0 ? (
 
-        <div className={currentDoctors.length <= 2 ? 'containerCard2' : 'containerCard'} >
+        <div className={currentDoctors.length <= 3 ? 'containerCard2' : 'containerCard'} >
           <div className="row">
             {currentDoctors.map((doctor) => (
               <div className="card-position" key={doctor.ID_medico}>
