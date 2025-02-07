@@ -40,7 +40,6 @@ export default function FormReview({ onReviewSubmitted }) {
       .catch(error => {
         console.error("Errore durante l'invio dei dati:", error);
         if (error.response) {
-          // Mostra il messaggio di errore del server
           alert(`Errore: ${error.response.data.message}`);
         } else {
           alert("Si è verificato un errore. Riprova più tardi.");

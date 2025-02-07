@@ -110,9 +110,17 @@ function storeDoctor(req, res, next) {
 function search(req, res) {
   const { Nome, Cognome, Specializzazione } = req.query;
   let sql = `
-  SELECT * 
+  SELECT 
+    medici.*, 
+    COALESCE(AVG(paziente_medico.valutazione), 0) AS valutazione
   FROM 
-    db_docs.medici WHERE 1=1`; // La condizione 1=1 permette di aggiungere filtri dinamicamente
+    db_docs.medici 
+  LEFT JOIN 
+    db_docs.paziente_medico 
+  ON 
+    medici.id_medico = paziente_medico.id_medico
+  WHERE 
+    1=1`; // La condizione 1=1 permette di aggiungere filtri dinamicamente
   let params = [];
 
   if (Nome) {
@@ -129,6 +137,8 @@ function search(req, res) {
     sql += ` AND Specializzazione LIKE ?`;
     params.push(`%${Specializzazione.trim()}%`);
   }
+
+  sql += ` GROUP BY medici.id_medico`
 
   connection.query(sql, params, (err, results) => {
     if (err) {

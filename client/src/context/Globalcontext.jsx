@@ -6,6 +6,11 @@ export const GlobalContext = createContext()
 export default function GlobalProvider({ children }) {
   const [doctors, setDoctors] = useState([])
   const [search, setSearch] = useState('')
+  const [filters, setFilters] = useState({
+    Nome: '',
+    Cognome: '',
+    Specializzazione: ''
+  })
 
   function fetchDoctors() {
     axios.get(`${import.meta.env.VITE_API_URL}`)
@@ -25,7 +30,7 @@ export default function GlobalProvider({ children }) {
 
 
   return (
-    <GlobalContext.Provider value={{ doctors, setDoctors, search, setSearch, fetchDoctors }}>
+    <GlobalContext.Provider value={{ doctors, setDoctors, search, setSearch, fetchDoctors, filters, setFilters }}>
       {children}
     </GlobalContext.Provider>
   )

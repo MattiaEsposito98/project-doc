@@ -127,6 +127,14 @@ body {
   /* 50% della larghezza meno un margine */
 }
 
+.nobodyDoctors {
+  margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Paginazione */
 .pagination {
   display: flex;
