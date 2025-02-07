@@ -21,7 +21,6 @@ export default function Filter() {
     })
       .then(res => {
         setDoctors(res.data);
-        // Reset dei campi di ricerca
         setSearch({
           Nome: '',
           Cognome: '',
@@ -36,7 +35,7 @@ export default function Filter() {
   function searchDoctors(e) {
     e.preventDefault();
     setFilters(search); // Imposta i filtri
-    filterDoctors(); // Esegui la ricerca
+    filterDoctors();
   }
 
   function handleChange(e) {
@@ -57,7 +56,7 @@ export default function Filter() {
           value={search.Nome}
           onChange={handleChange}
           placeholder="Nome"
-          className={style.inputField} // Aggiunta classe per gli input
+          className={style.inputField}
         />
         <input
           type="text"
@@ -65,7 +64,7 @@ export default function Filter() {
           value={search.Cognome}
           onChange={handleChange}
           placeholder="Cognome"
-          className={style.inputField} // Aggiunta classe per gli input
+          className={style.inputField}
         />
         <input
           type="text"
@@ -73,12 +72,12 @@ export default function Filter() {
           value={search.Specializzazione}
           onChange={handleChange}
           placeholder="Specializzazione"
-          className={style.inputField} // Aggiunta classe per gli input
+          className={style.inputField}
         />
       </div>
 
       <div className={style.buttonFilter}>
-        <button type="submit" className={style.submitButton}>Cerca</button> {/* Aggiunta classe per il bottone */}
+        <button type="submit" className={style.submitButton}>Cerca</button>
       </div>
     </form>
   );

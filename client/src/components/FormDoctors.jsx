@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import style from "./FormDoctor.module.css";
+import style from "./FormDoctors.module.css";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
 
@@ -29,8 +29,8 @@ export default function FormDoctors() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    axios
-      .post(`${import.meta.env.VITE_API_URL}register`, formData)
+    axios.post(`${import.meta.env.VITE_API_URL}register`, formData)
+
       .then((response) => {
         console.log("Dati inviati correttamente:", response.data);
         alert("Dati inviati correttamente!");
@@ -39,14 +39,12 @@ export default function FormDoctors() {
           fetchDoctors();
         }, 500);
         navigate('/')
-
       })
+
       .catch((error) => {
         console.error("Errore durante l'invio dei dati", error);
         alert("Si è verificato un errore");
       });
-
-
   }
 
   return (
