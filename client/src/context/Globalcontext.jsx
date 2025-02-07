@@ -8,11 +8,7 @@ export default function GlobalProvider({ children }) {
   const [search, setSearch] = useState('')
 
   function fetchDoctors() {
-    axios.get(`${import.meta.env.VITE_API_URL}`, {
-      params: {
-        search: search
-      }
-    })
+    axios.get(`${import.meta.env.VITE_API_URL}`)
       .then((res) => {
         setDoctors(res.data)
       })
@@ -20,23 +16,16 @@ export default function GlobalProvider({ children }) {
         console.error(err);
       })
 
-
   }
 
-  // Per cercare un dottore
-  function searchDoctor(e) {
-    e.preventDefault()
-    fetchDoctors()
-    setSearch('')
-  }
-
+  //Hook per caricare i dottori all'inizio
   useEffect(() => {
     fetchDoctors()
   }, [])
 
 
   return (
-    <GlobalContext.Provider value={{ doctors, setDoctors, search, setSearch, searchDoctor, fetchDoctors }}>
+    <GlobalContext.Provider value={{ doctors, setDoctors, search, setSearch, fetchDoctors }}>
       {children}
     </GlobalContext.Provider>
   )
