@@ -8,6 +8,9 @@ router.get('/', doctorController.index)
 //show
 router.get('/:id', doctorController.show)
 
+//Ricerca
+router.get('/search', doctorController.search)
+
 //postDoctor
 router.post('/register', doctorController.storeDoctor)
 
