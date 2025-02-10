@@ -3,42 +3,38 @@ import { GlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 import style from "./Filter.module.css";
 
-export default function Filter() {
+export default function Filter({ onSearch }) {
   const { setDoctors, setFilters, filters } = useContext(GlobalContext);
   const [search, setSearch] = useState({
-    Nome: '',
-    Cognome: '',
-    Specializzazione: ''
+    Nome: "",
+    Cognome: "",
+    Specializzazione: "",
   });
 
-  function filterDoctors() {
-    axios.get(`${import.meta.env.VITE_API_URL}search`, {
-      params: filters
-    })
-      .then(res => {
-        setDoctors(res.data);
-      })
-      .catch(err => {
-        console.error(err, 'Errore nella ricerca del medico');
-      });
-  }
-
-  function searchDoctors(e) {
-    e.preventDefault();
-    setFilters(search); // Imposta i filtri
-  }
-
+  // Aggiorna lo stato locale mentre l'utente digita
   function handleChange(e) {
     const { name, value } = e.target;
     setSearch({
       ...search,
       [name]: value,
+
     });
   }
 
+  // Quando l'utente preme "Cerca", aggiorna i filtri globali
+  function searchDoctors(e) {
+    e.preventDefault();
+    setFilters(search);
+    onSearch()
+  }
+
+  // Quando `filters` cambia, chiama `filterDoctors`
   useEffect(() => {
     if (filters.Nome || filters.Cognome || filters.Specializzazione) {
-      filterDoctors();
+      axios
+        .get(`${import.meta.env.VITE_API_URL}search`, { params: filters })
+        .then((res) => setDoctors(res.data))
+        .catch((err) => console.error("Errore nella ricerca del medico", err));
     }
   }, [filters]);
 
@@ -73,7 +69,7 @@ export default function Filter() {
       </div>
 
       <div className={style.buttonFilter}>
-        <button type="submit" className={style.submitButton}>Cerca</button>
+        <button type="submit" className={style.submitButton} >Cerca</button>
       </div>
     </form>
   );
