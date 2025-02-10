@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 import style from "./Filter.module.css";
 
 export default function Filter() {
-  const { setDoctors, setFilters } = useContext(GlobalContext);
+  const { setDoctors, setFilters, filters } = useContext(GlobalContext);
   const [search, setSearch] = useState({
     Nome: '',
     Cognome: '',
@@ -13,19 +13,10 @@ export default function Filter() {
 
   function filterDoctors() {
     axios.get(`${import.meta.env.VITE_API_URL}search`, {
-      params: {
-        Nome: search.Nome,
-        Cognome: search.Cognome,
-        Specializzazione: search.Specializzazione
-      }
+      params: filters
     })
       .then(res => {
         setDoctors(res.data);
-        setSearch({
-          Nome: '',
-          Cognome: '',
-          Specializzazione: ''
-        });
       })
       .catch(err => {
         console.error(err, 'Errore nella ricerca del medico');
@@ -35,7 +26,6 @@ export default function Filter() {
   function searchDoctors(e) {
     e.preventDefault();
     setFilters(search); // Imposta i filtri
-    filterDoctors();
   }
 
   function handleChange(e) {
@@ -45,6 +35,12 @@ export default function Filter() {
       [name]: value,
     });
   }
+
+  useEffect(() => {
+    if (filters.Nome || filters.Cognome || filters.Specializzazione) {
+      filterDoctors();
+    }
+  }, [filters]);
 
   return (
     <form className={style.formPosition} onSubmit={searchDoctors}>
