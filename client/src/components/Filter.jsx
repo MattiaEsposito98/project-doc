@@ -17,7 +17,6 @@ export default function Filter({ onSearch }) {
     setSearch({
       ...search,
       [name]: value,
-
     });
   }
 

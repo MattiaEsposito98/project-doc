@@ -2,7 +2,8 @@ const connection = require('../data/db')
 
 //index
 function index(req, res, next) {
-  const sql = `SELECT 
+  const sql = `
+    SELECT 
       medici.*, 
       COALESCE(AVG(paziente_medico.valutazione), 0) AS valutazione  
     FROM 
@@ -42,7 +43,13 @@ function show(req, res, next) {
     }
     const doctor = results[0]
 
-    const sql = `SELECT * FROM paziente_medico WHERE id_medico = ?`
+    const sql = `
+    SELECT * 
+    FROM 
+      paziente_medico 
+    WHERE 
+      id_medico = ?
+    `
 
     connection.query(sql, [id], (err, results) => {
       if (err) return next(err)
