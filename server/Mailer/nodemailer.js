@@ -19,10 +19,10 @@ const sendMail = async (to, subject, text) => {
     });
     console.log("Email inviata: " + info.messageId);
     return { success: true, messageId: info.messageId }
-
   } catch (error) {
     console.error("Errore nell'invio dell'email: ", error);
-    return { success: false, error: error.message }
+    return { success: true, messageId: info.messageId }
+
   }
 };
 

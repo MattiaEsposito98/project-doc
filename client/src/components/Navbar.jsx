@@ -18,7 +18,7 @@ export default function Navbar() {
           </li>
 
           <li className={style.buttonNavbar}>
-            <Link to="/about">About
+            <Link to="/about">Contattatci
             </Link>
           </li>
         </ul>

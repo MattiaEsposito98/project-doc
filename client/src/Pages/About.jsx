@@ -1,4 +1,5 @@
 import { useState } from "react";
+import style from "./About.module.css"
 
 export default function About() {
 
@@ -38,9 +39,9 @@ export default function About() {
   };
 
   return (
-    <div>
+    <div className={style.containerEmail}>
       <h2>Invia un'email</h2>
-      <form onSubmit={handleSubmit}>
+      <form className={style.formEmail} onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
@@ -64,7 +65,7 @@ export default function About() {
           onChange={handleChange}
           required
         />
-        <button type="submit">Invia Email</button>
+        <button className="buttonNavigate" type="submit">Invia Email</button>
       </form>
       <p>{status}</p>
     </div>

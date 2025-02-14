@@ -44,7 +44,6 @@ app.use(errorsHandler)
 app.use(notFound)
 
 
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
