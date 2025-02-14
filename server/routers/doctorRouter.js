@@ -17,5 +17,4 @@ router.get('/:id', doctorController.show)
 //postReview
 router.post('/:id', doctorController.storeReview)
 
-
 module.exports = router

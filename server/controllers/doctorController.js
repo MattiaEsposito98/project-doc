@@ -161,5 +161,4 @@ function search(req, res) {
   });
 }
 
-
 module.exports = { index, show, storeReview, storeDoctor, search }
