@@ -6,13 +6,19 @@
   width: 400px;
   padding: 12px;
   border-radius: 12px;
+  background-color: #0bac91;
 }
 
 .buttonForm {
   padding: 8px;
-  background-color: #3ba190;
+  background-color: #126143;
+  color: white;
   cursor: pointer;
   max-width: 200px;
+}
+
+.buttonForm:hover {
+  background-color: #05926f;
 }
 
 .labelInput {

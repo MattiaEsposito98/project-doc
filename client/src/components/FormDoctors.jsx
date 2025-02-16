@@ -49,6 +49,7 @@ export default function FormDoctors() {
 
   return (
     <>
+      <h1 className={style.title} >Registrati nella piattaforma!</h1>
       <form className={style.formDoctors} onSubmit={handleSubmit}>
         {/* Nome */}
         <div className={style.label}>

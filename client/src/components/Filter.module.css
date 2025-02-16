@@ -35,9 +35,7 @@
 
 .inputField:focus {
   border-color: #3ba190;
-
   outline: none;
-
 }
 
 .buttonFilter {
