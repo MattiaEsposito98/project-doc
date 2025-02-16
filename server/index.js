@@ -1,12 +1,14 @@
 const express = require("express")
 const app = express()
 const cors = require('cors')
+require('dotenv').config()
 const port = process.env.PORT || 3000
 const boyd_parser = require("body-parser")
 const sendMail = require("./Mailer/nodemailer")
 const doctorRouter = require('./routers/doctorRouter')
 const errorsHandler = require('./middlewares/errorsHandler')
 const notFound = require('./middlewares/notFound')
+
 
 app.use(
   cors({
@@ -17,13 +19,33 @@ app.use(
 app.use(express.json())
 app.use(express.static('pubblic'))
 
+//Login
+const admin = {
+  email: "admin",
+  password: "admin"
+}
 
+app.post('/api/login', (req, res) => {
+  const { email, password } = req.body
+
+  if (email === admin.email && password === admin.password) {
+    return res.json({ success: true, message: "acesso consentito" })
+  } else {
+    return res.status(401).json({ success: false, message: "Credenziali errate" })
+  }
+
+})
+
+
+//Server is running
 app.get('/', (req, res) => {
   res.send('Server is running')
 })
 
+
 //Rotta
 app.use('/api/doctors', doctorRouter)
+
 
 //Email
 app.post("/api/send-email", async (req, res) => {
