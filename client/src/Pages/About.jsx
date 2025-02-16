@@ -81,7 +81,7 @@ export default function About() {
           />
         </label>
 
-        <button className="buttonNavigate" type="submit">Invia Email</button>
+        <button className={style.buttonEmail} type="submit">Invia Email</button>
       </form>
       <p>{status}</p>
     </div>

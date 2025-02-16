@@ -21,14 +21,14 @@ app.use(express.static('pubblic'))
 
 //Login
 const admin = {
-  email: "admin",
+  username: "admin",
   password: "admin"
 }
 
 app.post('/api/login', (req, res) => {
-  const { email, password } = req.body
+  const { username, password } = req.body
 
-  if (email === admin.email && password === admin.password) {
+  if (username === admin.username && password === admin.password) {
     return res.json({ success: true, message: "acesso consentito" })
   } else {
     return res.status(401).json({ success: false, message: "Credenziali errate" })
